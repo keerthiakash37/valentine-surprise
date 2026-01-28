@@ -220,26 +220,40 @@
     }
   }
 
-  function answer(c) {
+  function answer(choice) {
+    // QUESTION 1
     if (q === 1) {
-      if (c === 1) {
+      if (choice === 1) {
         feedback.innerText = "yes correct baby its only you";
-        q++; setTimeout(loadQuestion, 1000);
-      } else if (c === 2) {
+        correctAnswers++;
+        q++;
+        setTimeout(loadQuestion, 1000);
+      } else if (choice === 2) {
         feedback.innerText = "oops try again you fool";
       } else {
         feedback.innerText = "yes you are absolutely stupid";
       }
-    } else {
-      if (c === 3) {
-        document.getElementById('quizPage').classList.remove('active');
-        document.getElementById('winnerPage').classList.add('active');
+    }
+
+    // QUESTION 2
+    else if (q === 2) {
+      if (choice === 3) {
+        feedback.innerText = "oops try again you fool";
       } else {
         feedback.innerText = "Yes sweetheart its always you 😊";
+        correctAnswers++;
+
+        if (correctAnswers === 2) {
+          setTimeout(() => {
+            document.getElementById("quizPage").classList.remove("active");
+            document.getElementById("winnerPage").classList.add("active");
+          }, 1000);
+        }
       }
     }
   }
 </script>
 
+ 
 </body>
 </html>

@@ -1,286 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Will You Be Mine 💖</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine Surprise 💖</title>
 
+  <style>
     body {
       margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #ff69b4);
       font-family: 'Segoe UI', sans-serif;
-      overflow-x: hidden;
+      background: linear-gradient(#ffc0cb, #ffb6c1);
+      text-align: center;
+      color: #800040;
     }
 
-    .container {
-      width: 92%;
-      max-width: 420px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.25);
-      padding: 24px 18px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      backdrop-filter: blur(10px);
+    .page {
+      display: none;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .active {
+      display: flex;
     }
 
     h1, h2 {
-      font-size: 1.8rem;
-      color: #c2185b;
       margin-bottom: 15px;
-    }
-
-    p {
-      font-size: 1rem;
-      color: #880e4f;
-      line-height: 1.6;
-    }
-
-    .photo {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #fff;
-      margin-bottom: 15px;
-    }
-
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 20px;
     }
 
     button {
-      width: 100%;
-      padding: 14px;
-      font-size: 1rem;
-      border-radius: 25px;
+      padding: 14px 20px;
+      margin: 10px;
+      font-size: 16px;
       border: none;
+      border-radius: 30px;
+      background: #ff4d88;
+      color: white;
       cursor: pointer;
+      width: 80%;
+      max-width: 280px;
     }
 
-    #yesBtn {
-      background: #e91e63;
-      color: white;
+    button:hover {
+      background: #ff1a66;
     }
 
-    #noBtn {
-      background: white;
-      color: #e91e63;
-      border: 2px solid #e91e63;
-    }
-
-    .love-page {
-      display: none;
-      position: absolute;
-      inset: 0;
-      padding: 25px 18px;
-      background: radial-gradient(circle, #ffc0cb, #ff69b4);
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      flex-direction: column;
-    }
-
-    .final-msg {
-      font-size: 1rem;
+    .message {
       margin-top: 15px;
+      font-weight: bold;
     }
 
-    .hearts {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
+    .winner-page h1 {
+      animation: pop 1s infinite alternate;
     }
 
-    .heart {
-      position: absolute;
-      animation: float 6s linear infinite;
-    }
-
-    @keyframes float {
-      from { transform: translateY(100vh); opacity: 1; }
-      to { transform: translateY(-10vh); opacity: 0; }
-    }
-
-    @media (min-width: 768px) {
-      h1, h2 { font-size: 2.4rem; }
-      .final-msg { font-size: 1.2rem; }
+    @keyframes pop {
+      from { transform: scale(1); }
+      to { transform: scale(1.1); }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Background Music -->
-  <audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <h1>Will you be mine 💖</h1>
+  <p>It is a wonderful journey which I had travelled with you… please say yes 💕</p>
 
-  <div class="container" id="mainPage">
-    <img src="photo.jpg" alt="Our Photo" class="photo" />
-    <h1>Will You Be Mine 💕</h1>
-    <p>
-      My dearest <strong>Preethi</strong>,<br>
-      It has been a wonderful journey traveling through life with you,
-      full of love, laughter, and unforgettable memories.
-      Will you be my Valentine? 💖
-    </p>
-    <div class="buttons">
-      <button id="yesBtn">Yes 😍</button>
-      <button id="noBtn">No 🙈</button>
-    </div>
-  </div>
+  <button onclick="goQuiz()">Click here for a quick quiz</button>
+</div>
 
-  <div class="love-page" id="lovePage">
-    <div class="hearts" id="hearts"></div>
-    <h2>Please Marry Me 💍</h2>
-    <div class="final-msg">
-      நீ தினம் சிரிச்சா போதுமே❤️ வேற எதுவும் வேண்டாமே❤️<br>
-      நான் உன்ன ரசிச்சா போதுமே… வேற எதுவும் வேண்டாமே… ❤️<br><br>
-      — <strong>Akash ❤️</strong>
-    </div>
-    <button id="quizBtn" style="margin-top:30px;">Click here for a quick quiz 💕</button>
-  </div>
+<!-- QUIZ PAGE -->
+<div class="page" id="quizPage">
+  <h2>Quiz for you 💕</h2>
 
-  <!-- Quiz Page -->
-  <div class="love-page" id="quizPage" style="display:none;">
-    <h2>Quiz for you 😌</h2>
-    <div class="final-msg" id="quizBox">
-      <p id="quizQuestion"></p>
-      <div class="buttons" id="quizOptions" style="flex-direction:column; gap:15px;"></div>
-      <p id="quizResult" style="margin-top:15px;"></p>
-    </div>
-  </div>
+  <p id="question"></p>
 
-  <!-- Winner Page -->
-  <div class="love-page" id="winPage" style="display:none;">
-    <div class="hearts"></div>
-    <h2>Congrats 🎉 You won the test 💖</h2>
-    <div class="final-msg">Proof that you know us perfectly 😍</div>
-  </div>
-    <h2>You're Love of my Life 💖</h2>
-    <div class="final-msg">
-      My Love, you make my world brighter, my days happier, and my heart fuller.
-      I am so grateful to have you by my side. Forever yours 💕<br><br>
-      — <strong> Akash 💕</strong>
-    </div>
-  </div>
+  <button onclick="answer(1)">Option 1</button>
+  <button onclick="answer(2)">Option 2</button>
+  <button onclick="answer(3)">Option 3</button>
 
-  <script>
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const mainPage = document.getElementById('mainPage');
-    const lovePage = document.getElementById('lovePage');
-    const music = document.getElementById('bgMusic');
-    let scale = 1;
-    let noClicks = 0;
+  <div class="message" id="feedback"></div>
+</div>
 
-    noBtn.addEventListener('click', () => {
-      noClicks++;
-      scale += 0.25;
-      yesBtn.style.transform = `scale(${scale})`;
+<!-- WINNER PAGE -->
+<div class="page winner-page" id="winnerPage">
+  <h1>🎉 Congrats you won the test 💖</h1>
 
-      if (noClicks >= 4) {
-        noBtn.style.display = 'none';
-      }
-    });
+  <h2>You're Love of my Life ❤️</h2>
 
-    yesBtn.addEventListener('click', () => {
-      mainPage.style.display = 'none';
-      lovePage.style.display = 'flex';
-      music.play();
-      createHearts();
-    });
+  <p class="message">
+    My Love, you make my world brighter, my days happier, and my heart fuller.<br>
+    I am so grateful to have you by my side. Forever yours ❤️<br><br>
+    <strong>Akash ❤️</strong>
+  </p>
+</div>
 
-    function createHearts() {
-      const heartsContainer = document.getElementById('hearts');
-      for (let i = 0; i < 40; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.innerHTML = '❤';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = 3 + Math.random() * 4 + 's';
-        heart.style.fontSize = 15 + Math.random() * 25 + 'px';
-        heartsContainer.appendChild(heart);
+<script>
+  let q = 1;
+
+  const question = document.getElementById("question");
+  const buttons = document.querySelectorAll("#quizPage button");
+  const feedback = document.getElementById("feedback");
+
+  function goQuiz() {
+    document.getElementById("page1").classList.remove("active");
+    document.getElementById("quizPage").classList.add("active");
+    loadQuestion();
+  }
+
+  function loadQuestion() {
+    feedback.innerHTML = "";
+
+    if (q === 1) {
+      question.innerText = "Who is the absolute boss in this relationship?";
+      buttons[0].innerText = "Obviously you";
+      buttons[1].innerText = "Me";
+      buttons[2].innerText = "My Mom";
+    }
+
+    if (q === 2) {
+      question.innerText = "Who fights the most?";
+      buttons[0].innerText = "You";
+      buttons[1].innerText = "Only you";
+      buttons[2].innerText = "Maybe me";
+    }
+  }
+
+  function answer(choice) {
+    if (q === 1) {
+      if (choice === 1) {
+        feedback.innerText = "Yes correct baby 💕 it’s only you!";
+        q++;
+        setTimeout(loadQuestion, 1000);
+      } else if (choice === 2) {
+        feedback.innerText = "Oops 😝 try again you fool";
+      } else {
+        feedback.innerText = "Yes you are absolutely stupid 🤭";
       }
     }
-  const quizBtn = document.getElementById('quizBtn');
-const quizPage = document.getElementById('quizPage');
-const winPage = document.getElementById('winPage');
-const quizQuestion = document.getElementById('quizQuestion');
-const quizOptions = document.getElementById('quizOptions');
-const quizResult = document.getElementById('quizResult');
 
-let currentQuestion = 0;
-
-const quizData = [
-  {
-    q: 'Who is the absolute boss in this relationship? 😎',
-    options: ['Obviously you', 'Me', 'My Mom'],
-    correct: 0
-  },
-  {
-    q: 'Who fights the most? 😜',
-    options: ['You', 'Only you', 'Maybe me'],
-    correct: 2
-  }
-];
-
-quizBtn.addEventListener('click', () => {
-  lovePage.style.display = 'none';
-  quizPage.style.display = 'flex';
-  loadQuestion();
-});
-
-function loadQuestion() {
-  quizResult.textContent = '';
-  quizQuestion.textContent = quizData[currentQuestion].q;
-  quizOptions.innerHTML = '';
-
-  quizData[currentQuestion].options.forEach((opt, index) => {
-    const btn = document.createElement('button');
-    btn.textContent = opt;
-    btn.onclick = () => checkQuizAnswer(index);
-    quizOptions.appendChild(btn);
-  });
-}
-
-function checkQuizAnswer(index) {
-  if (currentQuestion === 0) {
-    if (index === 0) {
-      quizResult.textContent = 'Yes correct baby 😘 it’s only you ❤️';
-      setTimeout(() => { currentQuestion++; loadQuestion(); }, 1200);
-    } else if (index === 1) {
-      quizResult.textContent = 'Oops 😜 try again you fool';
-    } else {
-      quizResult.textContent = 'Yes you are absolutely stupid 🤣';
+    else if (q === 2) {
+      if (choice === 3) {
+        feedback.innerText = "Oops 😝 try again you fool";
+      } else {
+        document.getElementById("quizPage").classList.remove("active");
+        document.getElementById("winnerPage").classList.add("active");
+      }
     }
   }
-
-  else if (currentQuestion === 1) {
-    if (index === 2) {
-      quizResult.textContent = 'Oops 😜 try again you fool';
-    } else {
-      quizResult.textContent = 'Yes sweetheart 😁 it’s always you 😊';
-      setTimeout(() => {
-        quizPage.style.display = 'none';
-        winPage.style.display = 'flex';
-      }, 1200);
-    }
-  }
-}
-
 </script>
 
 </body>

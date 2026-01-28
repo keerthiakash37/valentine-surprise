@@ -1,212 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Will You Be Mine 💖</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #ff69b4);
-      font-family: 'Segoe UI', sans-serif;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8" />
+<title>Will You Be Mine 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    .container {
-      text-align: center;
-      background: rgba(255, 255, 255, 0.25);
-      padding: 30px 20px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      backdrop-filter: blur(10px);
-      width: 90%;
-      max-width: 420px;
-    }
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #ff69b4);
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+    text-align: center;
+    color: #800040;
+  }
 
-    h1 {
-      color: #c2185b;
-      font-size: 2.8rem;
-      margin-bottom: 15px;
-    }
+  .page {
+    display: none;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 
-    p {
-      color: #880e4f;
-      font-size: 1.15rem;
-      margin-bottom: 30px;
-      line-height: 1.6;
-    }
+  .active {
+    display: flex;
+  }
 
-    .photo {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 5px solid #fff;
-      margin-bottom: 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
+  .container {
+    background: rgba(255,255,255,0.25);
+    padding: 30px 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    max-width: 420px;
+    width: 90%;
+  }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
+  h1, h2 {
+    color: #c2185b;
+  }
 
-    button {
-      border: none;
-      padding: 15px 35px;
-      font-size: 1.1rem;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+  p {
+    color: #880e4f;
+    line-height: 1.6;
+  }
 
-    #yesBtn {
-      background: #e91e63;
-      color: white;
-    }
+  button {
+    padding: 14px 28px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    background: #e91e63;
+    color: white;
+    cursor: pointer;
+    width: 85%;
+    max-width: 280px;
+  }
 
-    #noBtn {
-      background: white;
-      color: #e91e63;
-      border: 2px solid #e91e63;
-    }
+  .photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid white;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
 
-    #yesBtn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 10px 20px rgba(233,30,99,0.4);
-    }
+  /* Love Page */
+  .love-page {
+    background: radial-gradient(circle, #ffc0cb, #ff69b4);
+    color: white;
+  }
 
-    /* Love Page */
-    .love-page {
-      display: none;
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle, #ffc0cb, #ff69b4);
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      flex-direction: column;
-      padding: 30px;
-    }
+  .hearts {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
 
-    .love-page h2 {
-      font-size: 3.5rem;
-      text-shadow: 0 0 20px rgba(255,255,255,0.7);
-      animation: glow 2s infinite alternate;
-    }
+  .heart {
+    position: absolute;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+  }
 
-    .final-msg {
-      font-size: 1.4rem;
-      margin-top: 20px;
-      max-width: 600px;
-    }
+  @keyframes float {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+  }
 
-    @keyframes glow {
-      from { opacity: 0.8; }
-      to { opacity: 1; }
-    }
+  /* Winner */
+  .winner h1 {
+    animation: win 1s infinite alternate;
+  }
 
-    .hearts {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      top: 0;
-      left: 0;
-    }
+  @keyframes win {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+  }
 
-    .heart {
-      position: absolute;
-      color: rgba(255,255,255,0.9);
-      font-size: 20px;
-      animation: float 6s linear infinite;
-    }
-
-    @keyframes float {
-      from { transform: translateY(100vh); opacity: 1; }
-      to { transform: translateY(-10vh); opacity: 0; }
-    }
-  </style>
+  .message {
+    margin-top: 15px;
+    font-weight: bold;
+  }
+</style>
 </head>
+
 <body>
 
-  <!-- Background Music -->
-  <audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-  <div class="container" id="mainPage">
-    <img src="photo.jpg" alt="Our Photo" class="photo" />
+<!-- PAGE 1 : PROPOSAL -->
+<div class="page active" id="page1">
+  <div class="container">
+    <img src="photo.jpg" class="photo" />
     <h1>Will You Be Mine 💕</h1>
     <p>
       My dearest <strong>Preethi</strong>,<br>
-      It has been a wonderful journey traveling through life with you,
-      full of love, laughter, and unforgettable memories.
-      Will you Marry me? 💖
+      It has been a wonderful journey traveling through life with you.
+      Will you marry me? 💖
     </p>
-    <div class="buttons">
-      <button id="yesBtn">Yes 😍</button>
-      <button id="noBtn">No 🙈</button>
-    </div>
+    <button id="yesBtn">Yes 😍</button>
+    <button id="noBtn">No 🙈</button>
   </div>
+</div>
 
-  <div class="love-page" id="lovePage">
-    <div class="hearts" id="hearts"></div>
-    <h2>Please Marry me 💖</h2>
-    <div class="final-msg">
-      நீ தினம் சிரிச்சா போதுமே💕வேற எதுவும் வேணாமே💕நான் வாழவே… 
-நான் உன்ன ரசிச்சா போதுமே…வேற எதுவும் வேணாமே…நான் வாழவே… 💕<br><br>
-      — <strong> Akash 💕</strong>
-    </div>
-  </div>
+<!-- PAGE 2 : LOVE PAGE -->
+<div class="page love-page" id="lovePage">
+  <div class="hearts" id="hearts"></div>
+  <h2>Please Marry me 💖</h2>
+  <p>
+    நீ தினம் சிரிச்சா போதுமே💕<br>
+    நான் உன்ன ரசிச்சா போதுமே… 💕
+  </p>
+  <strong>Akash 💕</strong><br><br>
+  <button onclick="goQuiz()">Click here for a quick quiz</button>
+</div>
 
-  <script>
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const mainPage = document.getElementById('mainPage');
-    const lovePage = document.getElementById('lovePage');
-    const music = document.getElementById('bgMusic');
-    let scale = 1;
-    let noClicks = 0;
+<!-- PAGE 3 : QUIZ -->
+<div class="page" id="quizPage">
+  <h2>Quiz for you</h2>
+  <p id="question"></p>
 
-    noBtn.addEventListener('click', () => {
-      noClicks++;
-      scale += 0.25;
-      yesBtn.style.transform = `scale(${scale})`;
+  <button onclick="answer(1)" id="o1"></button>
+  <button onclick="answer(2)" id="o2"></button>
+  <button onclick="answer(3)" id="o3"></button>
 
-      if (noClicks >= 4) {
-        noBtn.style.display = 'none';
+  <div class="message" id="feedback"></div>
+</div>
+
+<!-- PAGE 4 : WIN -->
+<div class="page winner" id="winnerPage">
+  <h1>🎉 Congrats you won the test 🎉</h1>
+</div>
+
+<script>
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const music = document.getElementById('bgMusic');
+
+  let scale = 1, noClicks = 0;
+
+  yesBtn.onclick = () => {
+    document.getElementById('page1').classList.remove('active');
+    document.getElementById('lovePage').classList.add('active');
+    music.play();
+    createHearts();
+  };
+
+  noBtn.onclick = () => {
+    scale += 0.25;
+    noClicks++;
+    yesBtn.style.transform = `scale(${scale})`;
+    if (noClicks >= 4) noBtn.style.display = 'none';
+  };
+
+  function createHearts() {
+    const c = document.getElementById('hearts');
+    for (let i = 0; i < 40; i++) {
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.innerHTML = '❤';
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.animationDuration = 3 + Math.random() * 4 + 's';
+      c.appendChild(h);
+    }
+  }
+
+  // QUIZ LOGIC
+  let q = 1;
+  const question = document.getElementById("question");
+  const feedback = document.getElementById("feedback");
+
+  function goQuiz() {
+    document.getElementById('lovePage').classList.remove('active');
+    document.getElementById('quizPage').classList.add('active');
+    loadQuestion();
+  }
+
+  function loadQuestion() {
+    feedback.innerText = "";
+    if (q === 1) {
+      question.innerText = "Who is the absolute boss in this relationship?";
+      o1.innerText = "Obviously you";
+      o2.innerText = "Me";
+      o3.innerText = "My Mom";
+    } else {
+      question.innerText = "Who fights the most?";
+      o1.innerText = "You";
+      o2.innerText = "Only you";
+      o3.innerText = "Maybe me";
+    }
+  }
+
+  function answer(c) {
+    if (q === 1) {
+      if (c === 1) {
+        feedback.innerText = "yes correct baby its only you";
+        q++; setTimeout(loadQuestion, 1000);
+      } else if (c === 2) {
+        feedback.innerText = "oops try again you fool";
+      } else {
+        feedback.innerText = "yes you are absolutely stupid";
       }
-    });
-
-    yesBtn.addEventListener('click', () => {
-      mainPage.style.display = 'none';
-      lovePage.style.display = 'flex';
-      music.play();
-      createHearts();
-    });
-
-    function createHearts() {
-      const heartsContainer = document.getElementById('hearts');
-      for (let i = 0; i < 40; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.innerHTML = '❤';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = 3 + Math.random() * 4 + 's';
-        heart.style.fontSize = 15 + Math.random() * 25 + 'px';
-        heartsContainer.appendChild(heart);
+    } else {
+      if (c === 3) {
+        document.getElementById('quizPage').classList.remove('active');
+        document.getElementById('winnerPage').classList.add('active');
+      } else {
+        feedback.innerText = "Yes sweetheart its always you 😊";
       }
     }
-  </script>
+  }
+</script>
 
 </body>
 </html>
